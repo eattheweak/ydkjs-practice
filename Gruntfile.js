@@ -32,10 +32,6 @@ module.exports = function (grunt) {
 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
-            //bower: {// commenting out to reduce processor load
-            //    files: ['bower.json'],
-            //    tasks: ['wiredep']
-            //},
             js: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
                 tasks: ['newer:jshint:all'],
@@ -43,17 +39,10 @@ module.exports = function (grunt) {
                     livereload: '<%= connect.options.livereload %>'
                 }
             },
-            //jsTest: {// commenting out to reduce processor load
-            //    files: ['test/spec/{,*/}*.js'],
-            //    tasks: ['newer:jshint:test', 'karma']
-            //},
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server', 'autoprefixer']
             },
-            //gruntfile: {// commenting out to reduce processor load
-            //    files: ['Gruntfile.js']
-            //},
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -127,8 +116,7 @@ module.exports = function (grunt) {
             all: {
                 src: [
                     'Gruntfile.js',
-                    '<%= yeoman.app %>/scripts/{,*/}*.js',
-                    '!<%= yeoman.app %>/scripts/kendoui/**/*.js'
+                    '<%= yeoman.app %>/scripts/{,*/}*.js'
                 ]
             },
             test: {
@@ -305,53 +293,35 @@ module.exports = function (grunt) {
         // minification. These next options are pre-configured if you do not wish
         // to use the Usemin blocks.
         cssmin: {
-            noKendo: {
-                files: [{
-                    dest: '<%= yeoman.dist %>/styles/vendor.css',
-                    src: ['.tmp/concat/styles/vendor.css']
-                }, {
-                    dest: '<%= yeoman.dist %>/styles/main.css',
-                    src: ['.tmp/concat/styles/main.css']
-                }, {
-                    dest: '<%= yeoman.dist %>/styles/reportviewervendor.css',
-                    src: ['.tmp/concat/styles/reportviewervendor.css']
-                }, {
-                    dest: '<%= yeoman.dist %>/styles/reportviewermain.css',
-                    src: ['.tmp/concat/styles/reportviewermain.css']
-                }]
-            }
+            files: [{
+                dest: '<%= yeoman.dist %>/styles/vendor.css',
+                src: ['.tmp/concat/styles/vendor.css']
+            }, {
+                dest: '<%= yeoman.dist %>/styles/main.css',
+                src: ['.tmp/concat/styles/main.css']
+            }, {
+                dest: '<%= yeoman.dist %>/styles/reportviewervendor.css',
+                src: ['.tmp/concat/styles/reportviewervendor.css']
+            }, {
+                dest: '<%= yeoman.dist %>/styles/reportviewermain.css',
+                src: ['.tmp/concat/styles/reportviewermain.css']
+            }]
         },
         uglify: {
-            noKendo: {
-                files: [{
-                    dest: '<%= yeoman.dist %>/scripts/vendor.js',
-                    src: ['.tmp/concat/scripts/vendor.js']
-                }, {
-                    dest: '<%= yeoman.dist %>/scripts/scripts.js',
-                    src: ['.tmp/concat/scripts/scripts.js']
-                }, {
-                    dest: '<%= yeoman.dist %>/scripts/reportviewervendor.js',
-                    src: ['.tmp/concat/scripts/reportviewervendor.js']
-                }, {
-                    dest: '<%= yeoman.dist %>/scripts/reportviewermain.js',
-                    src: ['.tmp/concat/scripts/reportviewermain.js']
-                }]
-            }
+            files: [{
+                dest: '<%= yeoman.dist %>/scripts/vendor.js',
+                src: ['.tmp/concat/scripts/vendor.js']
+            }, {
+                dest: '<%= yeoman.dist %>/scripts/scripts.js',
+                src: ['.tmp/concat/scripts/scripts.js']
+            }, {
+                dest: '<%= yeoman.dist %>/scripts/reportviewervendor.js',
+                src: ['.tmp/concat/scripts/reportviewervendor.js']
+            }, {
+                dest: '<%= yeoman.dist %>/scripts/reportviewermain.js',
+                src: ['.tmp/concat/scripts/reportviewermain.js']
+            }]
         },
-        // concat: {
-        //   dist: {}
-        // },
-
-        //imagemin: {
-        //    dist: {
-        //        files: [{
-        //            expand: true,
-        //            cwd: '<%= yeoman.app %>/images',
-        //            src: '{,*/}*.{png,jpg,jpeg,gif}',
-        //            dest: '<%= yeoman.dist %>/images'
-        //        }]
-        //    }
-        //},
 
         svgmin: {
             dist: {
@@ -438,23 +408,24 @@ module.exports = function (grunt) {
                     cwd: 'bower_components/fontawesome/fonts',
                     src: ['*.*'],
                     dest: '<%= yeoman.tmp %>/fonts'
-                }, {
-                    expand: true,
-                    cwd: '<%= yeoman.app %>/scripts/kendoui/ReportViewer/templates',
-                    src: 'telerikReportViewerTemplate-9.1.15.731.html',
-                    dest: '<%=yeoman.dist %>/',
-                    rename: function (dest, src) {
-                        return dest + src.replace(/[\-\d\.]+\.html/, '.html');
-                    }
-                }, {
-                    expand: true,
-                    cwd: '<%= yeoman.app %>/scripts/kendoui/ReportViewer/templates',
-                    src: 'telerikReportViewerTemplate-9.1.15.731.html',
-                    dest: '<%=yeoman.tmp %>/',
-                    rename: function (dest, src) {
-                        return dest + src.replace(/[\-\d\.]+\.html/, '.html');
-                    }
-                }]
+                },
+                // {
+                //     expand: true,
+                //     cwd: '<%= yeoman.app %>/scripts/kendoui/ReportViewer/templates',
+                //     src: 'telerikReportViewerTemplate-9.1.15.731.html',
+                //     dest: '<%=yeoman.dist %>/',
+                //     rename: function (dest, src) {
+                //         return dest + src.replace(/[\-\d\.]+\.html/, '.html');
+                //     }
+                // }, {
+                //     expand: true,
+                //     cwd: '<%= yeoman.app %>/scripts/kendoui/ReportViewer/templates',
+                //     src: 'telerikReportViewerTemplate-9.1.15.731.html',
+                //     dest: '<%=yeoman.tmp %>/',
+                //     rename: function (dest, src) {
+                //         return dest + src.replace(/[\-\d\.]+\.html/, '.html');
+                //     }
+                // }]
             },
             styles: {
                 expand: true,
@@ -472,19 +443,6 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: '.tmp/concat/styles',
                     src: ['*.*'],
-                    dest: '<%= yeoman.dist %>/styles'
-                }]
-            },
-            kendoJS: {
-                files: [{
-                    expand: true,
-                    cwd: '.tmp/concat/scripts',
-                    src: ['kendo.js'],
-                    dest: '<%= yeoman.dist %>/scripts'
-                }, {
-                    expand: true,
-                    cwd: '.tmp/concat/styles',
-                    src: ['kendo.css'],
                     dest: '<%= yeoman.dist %>/styles'
                 }]
             }
@@ -551,21 +509,6 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-        grunt.task.run(['serve:' + target]);
-    });
-
-    grunt.registerTask('test', [
-        'newer:jshint',
-        'clean:server',
-        'wiredep',
-        'concurrent:test',
-        'autoprefixer',
-        'connect:test',
-        'karma'
-    ]);
-
     grunt.registerTask('build', [
         'clean:dist',
         'wiredep',
@@ -576,9 +519,8 @@ module.exports = function (grunt) {
         'ngAnnotate',
         'copy:dist',
         'cdnify',
-        'cssmin:noKendo',
-        'uglify:noKendo',
-        'copy:kendoJS',
+        'cssmin',
+        'uglify',
         'filerev',
         'usemin',
         'htmlmin'
